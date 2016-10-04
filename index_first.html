@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<meta charset='utf-8' />
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0,  minimum-scale=1.0"> 
+<title>Resa till Nordpolen</title>
+</head>
+
+<style>
+
+#wrapper {
+	position:absolute;
+	top:0; 
+	bottom:0; 
+	right:0; 
+	left:0; 
+	overflow:hidden;
+	background-color:#000000;
+}
+	
+#textBox {
+	position: absolute;
+	width:58%;
+	height:8%;
+	box-shadow: 0px 0px 5px #777777; 
+	overflow:hidden;
+	border-radius: 10px;
+	background-color:#ffffff;
+	padding:1%;
+	margin: 0;
+	top: 10%;
+	left: 50%;
+	margin-right: -50%;
+	transform: translate(-50%, -50%);
+}
+
+#pictureFrame {
+	position: absolute;
+	width:60%;
+	height:75%;
+	box-shadow: 0px 0px 5px #777777; 
+	overflow:hidden;
+	border-radius: 10px;
+	margin: 0;
+	top: 55%;
+	left: 50%;
+	margin-right: -50%;
+	transform: translate(-50%, -50%);
+}
+
+#pictureFrame img {
+	width:100%;
+	height:100%;
+	position: absolute;
+	transition-duration:2s;
+}
+
+.buttons {
+	position: absolute;
+	width:5%;
+	height:5%;
+	margin: 0;
+	margin-right: -50%;
+	transform: translate(-50%, -50%);
+}
+
+.buttons img {
+	width:100%;
+	height:100%;
+}
+
+#leftButton {
+	top: 50%;
+	left: 10%;
+}
+
+#rightButton {
+	top: 50%;
+	left: 90%;
+}
+
+</style>
+
+<body>
+
+<div id="wrapper">
+	<div id="textBox"></div>
+	<div id="leftButton" class="buttons" onclick="back();" ><img src="back.png"></div>
+		<div id="pictureFrame">
+			<div><img id="pa" src="slides/1.jpg"></div>
+			<div><img id="pb" src="#"></div>
+		</div>
+	<div id="rightButton" class="buttons" onclick="forward();" ><img src="forward.png"></div>
+</div>
+
+</body>
+
+<script>
+
+var pictures     = ["slides/1.jpg","slides/2.jpg","slides/3.jpg","slides/4.jpg","slides/5.jpg",
+                    "slides/6.jpg","slides/7.jpg","slides/8.jpg","slides/9.jpg","slides/10.jpg",
+					"slides/11.jpg","slides/12.jpg","slides/13.jpg","slides/14.jpg","slides/15.png"];
+
+var texts        = ["Mycket vatten har runnit under broarna sedan Andrees dödliga expedition mot Nordpolen 1897. Det är inte längre nödvändigt att bruka primitiva färdmedel som luftballonger.",
+					"Idag reser du bekvämt med isbrytare. Inte billigt men heller inga risker eller vedermödor.",
+					"Boka en bekväm hytt på den Ryska isbrytaren <i>50 Years of Victory</i> på websidan <a src='http://www.polarquest.se/resor/nordpolen-2017/' >www.Polarguest.se</a> för ca 375,000 kronor.\
+					Som sagt inte billigt men bekvämt jämnfört med Andrees läger på isen.",
+					"Du utgår från Helsinki. Sedan flyg till Murmansk där isbrytaren väntar.",
+					"Avnjut din mat i restaurangen. Du behöver inte först döda din mat.",
+					"Du behöver inte ta med brevduvor utan du kan hålla kontaken med dina vänner via email i radiorummet.",
+					"Du behöver inte frysa i havet om du vill ta ett dopp.",
+					"Fördriv tiden i baren om du så önskar.",
+					"Eller varför inte ta en tur med helikopern.",
+					"Eller en match bordtennis.",
+					"Fina fototillfällen.",
+					"Om isbrytare är för tråkigt kan du åka skidor till nordpolen för 350,000 kronor med <a src='http://polarexplorers.com'>www.polarexplorers.com</a>.",
+					"Flygrädd? För endast 5000 kronor kan du njuta av härlig bergklättring på Sydpolen tillsammans med dina vänner.",
+					"Eller ta en tur längdskidor genom det vita landskapet. Se den oförglömliga naturen och djuren på nära håll.",
+					"Vi hade inget mer :-("];
+
+
+var currentPic = 0;
+
+function forward() {
+	if (currentPic<(pictures.length-1)) {
+		currentPic++;
+		setPic(currentPic);
+	}
+}
+
+function back() {
+	if (currentPic>0) {
+		currentPic--;
+		setPic(currentPic);
+	}
+}
+
+function setPic(pic) {
+
+	document.getElementById("textBox").innerHTML = texts[pic];
+
+	if ((currentPic%2)==0) {
+		document.getElementById("pa").setAttribute("src", pictures[pic]);
+		document.getElementById("pa").style.opacity = "1";
+		document.getElementById("pb").style.opacity = "0";
+	}
+	else
+	{
+		document.getElementById("pb").setAttribute("src", pictures[pic]);
+		document.getElementById("pb").style.opacity = "1";
+		document.getElementById("pa").style.opacity = "0";
+	}
+
+}
+
+//Init
+document.getElementById("pb").style.opacity = "0";
+document.getElementById("textBox").innerHTML = texts[0];
+
+</script>
+
+</html>
